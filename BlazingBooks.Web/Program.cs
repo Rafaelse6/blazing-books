@@ -1,6 +1,14 @@
 using BlazingBooks.Web.Components;
+using BlazingBooks.Web.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<BookContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("BlazingBooks");
+    options.UseSqlServer(connectionString);
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
