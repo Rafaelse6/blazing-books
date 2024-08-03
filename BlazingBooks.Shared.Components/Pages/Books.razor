@@ -15,19 +15,19 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="genre-list">
-                        <div class="genre-item active">
+                        <div class="genre-item @(string.IsNullOrWhiteSpace(GenreSlug) ? "active" : "")">
                             <a class="genre-link" href="/" title="Top Books">Top Books</a>
                         </div>
                         @foreach (var g in _genres)
                         {
-                            <div class="genre-item">
+                            <div class="genre-item @(GenreSlug == g.Slug ? "active" : "")">
                                 <a class="genre-link" href="?genre=@g.Slug" title="@g.Name Books">@g.Name</a>
                             </div>
                         }
                     </div>
                 </div>
 
-                <h3 class="my-2">Top Books</h3>
+                <h3 class="mt-2 mb-3 heading">@_heading</h3>
 
                 <div class="row">
                     @foreach (var b in _books)
@@ -52,26 +52,43 @@
 
 @code {
 
+    private const int PageSize = 16;
+
     [Parameter]
     public int? PageNo { get; set; } = 1;
+
+    [SupplyParameterFromQuery(Name = "genre")]
+    public string? GenreSlug { get; set; }
 
     private GenreDto[] _genres = [];
     private BookListDto[] _books = [];
     private BookListDto[] _popularBooks = [];
     private int _totalCount = 0;
 
-    private const int PageSize = 16;
-
+    private string _heading = "Top Books";
 
     protected override async Task OnInitializedAsync()
     {
         var genreTask = BookService.GetGenresAsync(topOnly: false);
-        var booksTask = BookService.GetBooksAsync(PageNo ?? 1, PageSize);
-        var popularTask = BookService.GetPopularBooksAsync(10);
+        var booksTask = BookService.GetBooksAsync(PageNo ?? 1, PageSize, GenreSlug);
+        var popularTask = BookService.GetPopularBooksAsync(10, GenreSlug);
 
 
         _genres = await genreTask;
         (_books, _totalCount) = await booksTask;
         _popularBooks = await popularTask;
+
+        if (!string.IsNullOrWhiteSpace(GenreSlug))
+        {
+            var selectedGenre = _genres.FirstOrDefault(g => g.Slug == GenreSlug);
+            if (selectedGenre.Name is not null)
+            {
+                _heading = $"{selectedGenre.Name} Books";
+            }
+            else
+            {
+                _heading = "Top Books";
+            }
+        }
     }
 }
