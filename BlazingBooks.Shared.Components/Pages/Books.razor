@@ -32,13 +32,13 @@
                 <div class="row">
                     @foreach (var b in _books)
                     {
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="book-block col-sm-6 col-lg-3">
                             <a href="/books/@b.Id" title="@b.TItle">
-                                <figure bg-main-light>
+                                <figure class="image-box bg-main-light">
                                     <img src="@b.Image" alt="@b.TItle" />
                                 </figure>
                                 <div class="p-2">
-                                    <h6>@b.TItle</h6>
+                                    <h6 class="text-main heading text-center">@b.TItle</h6>
                                 </div>
                             </a>
                         </div>
