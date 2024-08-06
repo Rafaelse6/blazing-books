@@ -1,4 +1,5 @@
 using BlazingBooks.Shared.Interfaces;
+using BlazingBooks.Web;
 using BlazingBooks.Web.Components;
 using BlazingBooks.Web.Data;
 using BlazingBooks.Web.Services;
@@ -34,5 +35,7 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(BlazingBooks.Shared.Components.Pages.Books).Assembly);
+
+app.MapBookEndpoints();
 
 app.Run();
