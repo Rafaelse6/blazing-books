@@ -1,4 +1,4 @@
 ﻿namespace BlazingBooks.Shared.Dtos
 {
-    public record BookListDto(int Id, string TItle, string Image, AuthorDto Author);
+    public record BookListDto(int Id, string Title, string Image, AuthorDto Author);
 }
