@@ -95,25 +95,19 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine($"Navigating to book details with ID: {BookId}");
         if (BookId <= 0)
         {
-            Console.WriteLine("Invalid BookId, redirecting to home.");
             NavigationManager.NavigateTo("/");
             return;
         }
-
         var similarBooksTask = BookService.GetSimilarBooksAsync(BookId, 6);
         _book = await BookService.GetBookAsync(BookId);
         _similarBooks = await similarBooksTask;
 
         if (_book is null)
         {
-            Console.WriteLine("Book not found, redirecting to home.");
             NavigationManager.NavigateTo("/");
             return;
         }
-
-        Console.WriteLine($"Book loaded: {_book.Title}");
     }
 }
