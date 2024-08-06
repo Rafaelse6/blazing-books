@@ -10,6 +10,22 @@
     <h1 class="m-0 text-white fw-bold">@_heading</h1>
 </SectionContent>
 
+<div class="container-lg">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <h3 class="mt-2 mb-3 heading">@_heading</h3>
+                <BooksGrid Books="_authorBooks" />
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <PopularBooks PopularBooksList="_popularBooks" />
+        </div>
+    </div>
+</div>
+
+
 @code {
     private const int PageSize = 16;
 

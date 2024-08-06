@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="shared\PopularBooks.razor.css" />
+	</ItemGroup>
+	
+	<ItemGroup>
 		<_ContentIncludedByDefault Remove="Pages\BookDetails.razor" />
+		<_ContentIncludedByDefault Remove="shared\BooksGrid.razor" />
 		<_ContentIncludedByDefault Remove="wwwroot\common.css" />
 	</ItemGroup>
 
@@ -25,15 +30,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Shared\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<UpToDateCheckInput Remove="Pages\BookDetails.razor" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="Pages\BookDetails.razor" />
+		<None Include="shared\BooksGrid.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="shared\BooksGrid.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="shared\PopularBooks.razor.css" />
 	</ItemGroup>
 
 </Project>
