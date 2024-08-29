@@ -1,4 +1,18 @@
-﻿a, .btn-link {
+﻿:root {
+    --navbar-height: 55px;
+    --tabbar-height: 55px;
+}
+
+body {
+    padding-top: var(--navbar-height);
+    padding-bottom: var(--tabbar-height);
+}
+
+a {
+    text-decoration: none;
+}
+
+/*a, .btn-link {
     color: #006bb7;
 }
 
@@ -30,7 +44,7 @@ h1:focus {
 
 .validation-message {
     color: #e50000;
-}
+}*/
 
 #blazor-error-ui {
     background: lightyellow;
