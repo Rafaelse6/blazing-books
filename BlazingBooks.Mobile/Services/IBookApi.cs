@@ -5,7 +5,7 @@ namespace BlazingBooks.Mobile.Services
 {
     public interface IBookApi
     {
-        [Get("/api/book/{bookId}")]
+        [Get("/api/books/{bookId}")]
         Task<BookDetailsDto> GetBookAsync(int bookId);
 
         [Get("/api/books")]
