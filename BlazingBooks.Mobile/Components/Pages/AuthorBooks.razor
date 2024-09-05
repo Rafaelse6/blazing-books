@@ -1,0 +1,18 @@
+﻿@page "/authors/{authorSlug}/books"
+@page "/authors/{authorSlug}/books/page/{pageNo:int?}"
+@using BlazingBooks.Mobile.Components.Layout
+
+@layout InnerPageLayout
+
+<BlazingBooks.Shared.Components.shared.AuthorBooksComponent AuthorSlug="@AuthorSlug" PageNo="PageNo" />
+
+@code {
+    private const int PageSize = 16;
+
+    [Parameter]
+    public string AuthorSlug { get; set; }
+
+    [Parameter]
+    public int? PageNo { get; set; } = 1;
+
+}

@@ -1,13 +1,18 @@
-﻿@page "/authors/{authorSlug}/books"
-@page "/authors/{authorSlug}/books/page/{pageNo:int?}"
-
-@inject NavigationManager NavigationManager
+﻿@inject NavigationManager NavigationManager
 @inject IBookService BookService
+@inject ICommonService CommonService;
 
 <PageTitle>@_heading | Blazing Books</PageTitle>
 
 <SectionContent SectionName="PageTitle">
-    <h1 class="m-0 text-white fw-bold">@_heading</h1>
+    @if (CommonService.IsWeb)
+    {
+        <h1 class="m-0 text-white fw-bold">@_heading</h1>
+    }
+    else
+    {
+        <span>@_heading</span>
+    }
 </SectionContent>
 
 <div class="container-lg">
@@ -29,7 +34,7 @@
 @code {
     private const int PageSize = 16;
 
-    [Parameter]
+    [Parameter, EditorRequired]
     public string AuthorSlug { get; set; }
 
     [Parameter]

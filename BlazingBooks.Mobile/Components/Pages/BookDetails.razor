@@ -1,0 +1,11 @@
+﻿@page "/books/{bookId:int}"
+@using BlazingBooks.Mobile.Components.Layout
+
+@layout InnerPageLayout
+
+<BlazingBooks.Shared.Components.shared.BookDetailsComponent BookId="BookId" />
+
+@code {
+    [Parameter]
+    public int BookId { get; set; }
+}

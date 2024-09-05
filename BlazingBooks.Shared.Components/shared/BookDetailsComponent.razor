@@ -1,8 +1,18 @@
 ﻿@inject NavigationManager NavigationManager
 @inject IBookService BookService
+@inject ICommonService CommonService
+
+<PageTitle>@_book?.Title</PageTitle>
 
 <SectionContent SectionName="PageTitle">
-    <h1 class="m-0 text-white fw-bold">@_book?.Title - Book Description</h1>
+    @if (CommonService.IsWeb)
+    {
+        <h1 class="m-0 text-white fw-bold">@_book?.Title - Book Description</h1>
+    }
+    else
+    {
+        <span>@_book?.Title</span>
+    }
 </SectionContent>
 
 @if (_book is not null)
@@ -83,7 +93,7 @@
 
 
 @code {
-    [Parameter]
+    [Parameter, EditorRequired]
     public int BookId { get; set; }
 
     private BookDetailsDto? _book;

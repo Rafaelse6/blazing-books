@@ -1,12 +1,20 @@
 ﻿@page "/"
 @page "/page/{pageNo:int?}"
 @inject IBookService BookService;
+@inject ICommonService CommonService;
 
 <PageTitle>Home | Blazing Books</PageTitle>
 
 <SectionContent SectionName="PageTitle">
-    <h1 class="m-0 text-white fw-bold">Blazing Books</h1>
-    <h3 class="text-white mt-2">A library of hundreds of popular books</h3>
+    @if (CommonService.IsWeb)
+    {
+        <h1 class="m-0 text-white fw-bold">Blazing Books</h1>
+        <h3 class="text-white mt-2">A library of hundreds of popular books</h3>
+    }
+    else
+    {
+        <span>Blazing Books</span>
+    }
 </SectionContent>
 
 
@@ -14,19 +22,22 @@
     <div class="row">
         <div class="col-md-9">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="genre-list">
-                        <div class="genre-item @(string.IsNullOrWhiteSpace(GenreSlug) ? "active" : "")">
-                            <a class="genre-link" href="/" title="Top Books">Top Books</a>
-                        </div>
-                        @foreach (var g in _genres)
-                        {
-                            <div class="genre-item @(GenreSlug == g.Slug ? "active" : "")">
-                                <a class="genre-link" href="?genre=@g.Slug" title="@g.Name Books">@g.Name</a>
+                @if (CommonService.IsWeb)
+                {
+                    <div class="col-sm-12">
+                        <div class="genre-list">
+                            <div class="genre-item @(string.IsNullOrWhiteSpace(GenreSlug) ? "active" : "")">
+                                <a class="genre-link" href="/" title="Top Books">Top Books</a>
                             </div>
-                        }
+                            @foreach (var g in _genres)
+                            {
+                                <div class="genre-item @(GenreSlug == g.Slug ? "active" : "")">
+                                    <a class="genre-link" href="?genre=@g.Slug" title="@g.Name Books">@g.Name</a>
+                                </div>
+                            }
+                        </div>
                     </div>
-                </div>
+                }
 
                 <h3 class="mt-2 mb-3 heading">@_heading</h3>
 

@@ -16,7 +16,8 @@ builder.Services.AddDbContextFactory<BookContext>(options =>
 // Add services to the container.
 builder.Services.AddRazorComponents();
 
-builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddTransient<IBookService, BookService>()
+    .AddSingleton<ICommonService, CommonService>(); ;
 
 var app = builder.Build();
 

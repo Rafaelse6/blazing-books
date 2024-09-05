@@ -11,7 +11,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<_ContentIncludedByDefault Remove="Pages\BookDetails.razor" />
 		<_ContentIncludedByDefault Remove="shared\BooksGrid.razor" />
 		<_ContentIncludedByDefault Remove="wwwroot\common.css" />
 	</ItemGroup>
@@ -30,11 +29,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<UpToDateCheckInput Remove="Pages\BookDetails.razor" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="Pages\BookDetails.razor" />
 		<None Include="shared\BooksGrid.razor" />
 	</ItemGroup>
 
